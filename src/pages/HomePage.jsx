@@ -68,46 +68,73 @@ function HomePage({ onAdd }) {
 
         </div>
       </section>
+      
+          {/* Premium Shop By Category */}
+          <section className="category-section py-5">
+            <div className="container">
 
-      {/* Categories */}
-      <section className="category-section py-5">
-
-        <div className="container">
-
-          <div className="text-center mb-5">
-            <p className="section-label">
-              EXPLORE STYLE
-            </p>
-
-            <h2>Shop By Category</h2>
-          </div>
-
-          <div className="row g-4">
-
-            {categories.map((category) => (
-              <div
-                className="col-12 col-sm-6 col-lg-3"
-                key={category.id}
-              >
-                <Link
-                  to={`/shop?category=${category.id}`}
-                  className="category-card"
-                >
-                  <h4>{category.name}</h4>
-
-                  <p>{category.description}</p>
-
-                  <span>
-                    Explore Collection →
-                  </span>
-
-                </Link>
+              <div className="text-center mb-5 category-heading">
+                <p className="section-label">EXPLORE STYLE</p>
+                <h2>Shop By Category</h2>
+                <p>Discover your style. Find your perfect collection.</p>
               </div>
-            ))}
 
-          </div>
-        </div>
-      </section>
+              <div className="row g-4">
+
+                {categories.map((category, index) => {
+                  const categoryProduct = products.find(
+                    (product) => product.category === category.id
+                  );
+
+                  const productCount = products.filter(
+                    (product) => product.category === category.id
+                  ).length;
+
+                  return (
+                    <div
+                      className="col-12 col-sm-6 col-lg-3"
+                      key={category.id}
+                      style={{ "--card-index": index }}
+                    >
+                      <Link
+                        to={`/shop?category=${category.id}`}
+                        className="home-category-card"
+                      >
+                        <div className="home-category-image">
+                          <img
+                            src={categoryProduct?.image}
+                            alt={category.name}
+                            loading="lazy"
+                          />
+
+                          <div className="home-category-overlay"></div>
+
+                          <span className="home-category-count">
+                            {String(productCount).padStart(2, "0")} PRODUCTS
+                          </span>
+
+                          <div className="home-category-explore">
+                            EXPLORE COLLECTION <span>↗</span>
+                          </div>
+                        </div>
+
+                        <div className="home-category-content">
+                          <div>
+                            <h3>{category.name}</h3>
+                            <p>{category.description}</p>
+                          </div>
+
+                          <span className="home-category-arrow">↗</span>
+                        </div>
+                      </Link>
+                    </div>
+                  );
+                })}
+
+              </div>
+            </div>
+          </section>
+
 
       {/* Benefits */}
       <section className="container py-5">
