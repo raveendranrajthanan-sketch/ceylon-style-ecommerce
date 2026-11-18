@@ -6856,3 +6856,197 @@ footer {
     transform: translateX(-50%);
   }
 }
+
+/* Contact Page Full Background - Gold */
+
+.contact-page {
+  background: linear-gradient(
+    135deg,
+    #8f6b16 0%,
+    #c49a32 50%,
+    #e0bd62 100%
+  ) !important;
+  min-height: 100vh;
+  padding: 45px 20px !important;
+}
+
+/* PREMIUM CONTACT PAGE - GOLD BACKGROUND OVERRIDE */
+
+main.premium-contact-page {
+  background: linear-gradient(
+    135deg,
+    #8f6b16 0%,
+    #c49a32 50%,
+    #e0bd62 100%
+  ) !important;
+  min-height: 100vh;
+}
+
+/* Keep the cards dark */
+.premium-contact-page .contact-form-card,
+.premium-contact-page .contact-info-card {
+  background: #151515 !important;
+}
+
+/* =====================================
+   CEYLON STYLE - LUXURY CONTACT DESIGN
+===================================== */
+
+.premium-contact-page {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    120deg,
+    #8f6b16,
+    #c49a32,
+    #e8c66c,
+    #a77b1c
+  ) !important;
+  background-size: 300% 300% !important;
+  animation: contactGoldBackground 12s ease infinite;
+}
+
+/* Animated Gold Background */
+
+@keyframes contactGoldBackground {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Contact Heading */
+
+.premium-contact-page .contact-heading {
+  position: relative;
+  animation: contactFadeUp 1s ease both;
+}
+
+.premium-contact-page .contact-heading span {
+  color: #fff2c2 !important;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.premium-contact-page .contact-heading h2 {
+  color: #17120a !important;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  text-shadow: 0 2px 1px rgba(255,255,255,0.15);
+}
+
+.premium-contact-page .contact-heading p {
+  color: #30230b !important;
+}
+
+/* Cards Entrance Animation */
+
+.premium-contact-page .contact-form-card,
+.premium-contact-page .contact-info-card {
+  background: linear-gradient(145deg, #191919, #090909) !important;
+  border: 1px solid rgba(255, 215, 100, 0.4) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  animation: contactFadeUp 1s ease both;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.premium-contact-page .contact-form-card {
+  animation-delay: 0.2s;
+}
+
+.premium-contact-page .contact-info-card {
+  animation-delay: 0.4s;
+}
+
+/* Luxury Hover Glow */
+
+.premium-contact-page .contact-form-card:hover,
+.premium-contact-page .contact-info-card:hover {
+  transform: translateY(-7px);
+  border-color: #ffd700 !important;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.4),
+              0 0 22px rgba(255,215,0,0.2);
+}
+
+/* Gold Heading Inside Cards */
+
+.premium-contact-page .contact-form-card h3,
+.premium-contact-page .contact-info-card h3 {
+  color: #f2d27a !important;
+}
+
+/* Gold Form Labels */
+
+.premium-contact-page .contact-form-card label {
+  color: #e7c15b !important;
+}
+
+/* Input Focus Animation */
+
+.premium-contact-page .contact-form-card input,
+.premium-contact-page .contact-form-card textarea {
+  transition: border-color 0.3s ease,
+              box-shadow 0.3s ease,
+              transform 0.3s ease;
+}
+
+.premium-contact-page .contact-form-card input:focus,
+.premium-contact-page .contact-form-card textarea:focus {
+  border-color: #e6bd48 !important;
+  box-shadow: 0 0 12px rgba(230,189,72,0.25);
+  transform: translateY(-2px);
+}
+
+/* Gold Submit Button */
+
+.premium-contact-page .contact-submit-button {
+  background: linear-gradient(110deg, #b8860b, #ffe08a, #b8860b) !important;
+  background-size: 200% auto !important;
+  color: #17120a !important;
+  font-weight: 800;
+  border: none !important;
+  transition: all 0.4s ease;
+}
+
+.premium-contact-page .contact-submit-button:hover {
+  background-position: right center !important;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(255,215,0,0.3);
+}
+
+/* Contact Information */
+
+.premium-contact-page .contact-info-item {
+  transition: transform 0.3s ease;
+}
+
+.premium-contact-page .contact-info-item:hover {
+  transform: translateX(7px);
+}
+
+.premium-contact-page .contact-info-item > span {
+  color: #e6bd48 !important;
+}
+
+/* Entrance Animation */
+
+@keyframes contactFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .premium-contact-page,
+  .premium-contact-page * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
