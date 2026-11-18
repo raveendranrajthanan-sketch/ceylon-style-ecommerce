@@ -191,51 +191,42 @@ function HomePage({ onAdd }) {
           
         </div>
       </section>
-      {/* Premium Social Media Marquee */}
-      <section className="social-marquee">
-
-        <div className="social-marquee-heading">
-          <span>STAY CONNECTED</span>
-          <h3>FOLLOW OUR STYLE</h3>
-        </div>
-
-        <div className="social-marquee-track">
-
-          {[1, 2].map((group) => (
-            <div
-              className="social-marquee-group"
-              key={group}
-              aria-hidden={group === 2}
-            >
-              <div className="social-item">
-                <span className="social-logo">f</span>
-                <span>FACEBOOK</span>
+      
+            {/* Infinite Social Media Marquee */}
+            <section className="social-marquee">
+              <div className="social-marquee-heading">
+                <span>STAY CONNECTED</span>
+                <h3>FOLLOW OUR STYLE</h3>
               </div>
 
-              <div className="social-item">
-                <span className="social-logo">◎</span>
-                <span>INSTAGRAM</span>
+              <div className="social-marquee-track">
+                {[1, 2].map((group) => (
+                  <div className="social-marquee-group" key={group}>
+                    {[
+                      { name: "FACEBOOK", logo: "f", url: "https://www.facebook.com/" },
+                      { name: "INSTAGRAM", logo: "◎", url: "https://www.instagram.com/" },
+                      { name: "TIKTOK", logo: "♪", url: "https://www.tiktok.com/" },
+                      { name: "YOUTUBE", logo: "▶", url: "https://www.youtube.com/" },
+                      { name: "PINTEREST", logo: "P", url: "https://www.pinterest.com/" }
+                    ].map((social) => (
+                      <a
+                        key={social.name}
+                        className="social-item"
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={social.name}
+                      >
+                        <span className="social-logo">{social.logo}</span>
+                        <span>{social.name}</span>
+                      </a>
+                    ))}
+                  </div>
+                ))}
               </div>
+            </section>
 
-              <div className="social-item">
-                <span className="social-logo">♪</span>
-                <span>TIKTOK</span>
-              </div>
 
-              <div className="social-item">
-                <span className="social-logo">▶</span>
-                <span>YOUTUBE</span>
-              </div>
-
-              <div className="social-item">
-                <span className="social-logo">P</span>
-                <span>PINTEREST</span>
-              </div>
-            </div>
-          ))}
-
-        </div>
-      </section>
     </div>
   );
 }
