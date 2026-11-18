@@ -5349,3 +5349,272 @@ button {
     filter: none;
   }
 }
+
+/* ===================================
+   CEYLON STYLE - PREMIUM FOOTER
+=================================== */
+
+.premium-footer {
+  position: relative;
+  overflow: hidden;
+  padding: 75px 0 0;
+  background:
+    radial-gradient(ellipse at top left, rgba(197, 157, 98, 0.09), transparent 45%),
+    linear-gradient(135deg, #11100e, #080808);
+  border-top: 1px solid rgba(213, 173, 114, 0.3);
+  color: #fff;
+}
+
+.premium-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #d5ad72,
+    transparent
+  );
+}
+
+.footer-main {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: 45px;
+  padding-bottom: 55px;
+}
+
+/* Brand */
+
+.footer-logo {
+  display: inline-block;
+  color: #e4c18d;
+  font-family: Georgia, serif;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-logo span {
+  font-size: 30px;
+  margin-right: 8px;
+}
+
+.footer-logo:hover {
+  color: #fff0d5;
+}
+
+.footer-tagline {
+  color: #c9a46a;
+  font-size: 9px;
+  letter-spacing: 2px;
+  margin-top: 12px;
+}
+
+.footer-description {
+  color: #aaa39a;
+  font-size: 13px;
+  line-height: 1.9;
+  max-width: 310px;
+  margin-top: 20px;
+}
+
+/* Social Icons */
+
+.footer-socials {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.footer-socials a {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(213, 173, 114, 0.4);
+  border-radius: 50%;
+  color: #d5ad72;
+  font-size: 17px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.35s ease;
+}
+
+.footer-socials a:hover {
+  color: #111;
+  background: #d5ad72;
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(213, 173, 114, 0.2);
+}
+
+/* Footer Links */
+
+.footer-links h4,
+.footer-contact h4 {
+  position: relative;
+  color: #e4c18d;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 28px;
+  padding-bottom: 13px;
+}
+
+.footer-links h4::after,
+.footer-contact h4::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 35px;
+  height: 2px;
+  background: #c9a46a;
+  transition: width 0.4s ease;
+}
+
+.footer-links:hover h4::after,
+.footer-contact:hover h4::after {
+  width: 65px;
+}
+
+.footer-links a {
+  display: block;
+  width: fit-content;
+  color: #aaa39a;
+  font-size: 13px;
+  text-decoration: none;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #e4c18d;
+  transform: translateX(7px);
+}
+
+/* Contact */
+
+.footer-contact p {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #aaa39a;
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+
+.footer-contact p span {
+  color: #d5ad72;
+  font-size: 19px;
+}
+
+.footer-contact-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 11px 17px;
+  color: #d5ad72;
+  border: 1px solid #c9a46a;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  transition: all 0.35s ease;
+}
+
+.footer-contact-btn:hover {
+  color: #111;
+  background: #d5ad72;
+}
+
+/* Bottom */
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 23px 0;
+  border-top: 1px solid rgba(213, 173, 114, 0.18);
+}
+
+.footer-bottom p {
+  color: #888;
+  font-size: 10px;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.footer-bottom p span {
+  color: #d5ad72;
+  font-weight: 700;
+}
+
+.footer-bottom-tagline {
+  color: #c9a46a !important;
+}
+
+/* Tablet */
+
+@media (max-width: 991px) {
+  .footer-main {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 575px) {
+  .premium-footer {
+    padding-top: 55px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 35px 20px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-description {
+    max-width: 100%;
+  }
+
+  .footer-logo {
+    font-size: 22px;
+  }
+
+  .footer-links h4,
+  .footer-contact h4 {
+    font-size: 10px;
+  }
+
+  .footer-links a,
+  .footer-contact p {
+    font-size: 12px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 0;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .premium-footer *,
+  .premium-footer *::before,
+  .premium-footer *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
