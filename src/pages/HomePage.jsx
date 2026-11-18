@@ -4,34 +4,57 @@ import { categories, products } from "../constants/data";
 import ProductCard from "../components/ProductCard";
 
 function HomePage({ onAdd }) {
-  const featuredProducts = products.slice(0, 4);
+  const featuredProducts = categories
+  .map((category) =>
+    products.find((product) => product.category === category.id)
+  )
+  .filter(Boolean);
 
   return (
     <div>
-
-      {/* Hero Section */}
+      
+      {/* Premium Hero Section */}
       <section className="hero-section">
         <div className="container">
-          <div className="hero-content">
+          <div className="hero-layout">
 
-            <p className="hero-subtitle">
-              NEW COLLECTION 2026
-            </p>
+            {/* Left Side - Text */}
+            <div className="hero-content">
+              <p className="hero-subtitle">
+                NEW COLLECTION 2026
+              </p>
 
-            <h1>
-              Wear Your Style.
-              <br />
-              Feel The <span>Difference.</span>
-            </h1>
+              <h1>
+                Wear Your Style.
+                <br />
+                Feel The <span>Difference.</span>
+              </h1>
 
-            <p>
-              Discover premium fashion designed
-              for your unique lifestyle.
-            </p>
+              <p className="hero-description">
+                Discover premium fashion designed
+                for your unique lifestyle.
+              </p>
 
-            <Link to="/shop" className="btn hero-btn">
-              SHOP NOW →
-            </Link>
+              <Link to="/shop" className="btn hero-btn">
+                SHOP NOW →
+              </Link>
+            </div>
+
+            {/* Right Side - Fashion Model */}
+            <div className="hero-image">
+              <div className="hero-image-glow"></div>
+
+              <img
+                src="/images/hero-model.jpg"
+                alt="Ceylon Style Fashion Model"
+                className="hero-model-image"
+              />
+
+              <div className="hero-image-caption">
+                <span>CEYLON STYLE</span>
+                <p>PREMIUM FASHION 2026</p>
+              </div>
+            </div>
 
           </div>
         </div>
@@ -137,7 +160,7 @@ function HomePage({ onAdd }) {
 
 
       {/* Benefits */}
-      <section className="container py-5">
+      <section className="container py-5 home-benefits-section">
 
         <div className="text-center mb-5">
           <h2>Why Choose Ceylon Style?</h2>
@@ -165,10 +188,54 @@ function HomePage({ onAdd }) {
               We are always here to help you.
             </p>
           </div>
+          
+        </div>
+      </section>
+      {/* Premium Social Media Marquee */}
+      <section className="social-marquee">
+
+        <div className="social-marquee-heading">
+          <span>STAY CONNECTED</span>
+          <h3>FOLLOW OUR STYLE</h3>
+        </div>
+
+        <div className="social-marquee-track">
+
+          {[1, 2].map((group) => (
+            <div
+              className="social-marquee-group"
+              key={group}
+              aria-hidden={group === 2}
+            >
+              <div className="social-item">
+                <span className="social-logo">f</span>
+                <span>FACEBOOK</span>
+              </div>
+
+              <div className="social-item">
+                <span className="social-logo">◎</span>
+                <span>INSTAGRAM</span>
+              </div>
+
+              <div className="social-item">
+                <span className="social-logo">♪</span>
+                <span>TIKTOK</span>
+              </div>
+
+              <div className="social-item">
+                <span className="social-logo">▶</span>
+                <span>YOUTUBE</span>
+              </div>
+
+              <div className="social-item">
+                <span className="social-logo">P</span>
+                <span>PINTEREST</span>
+              </div>
+            </div>
+          ))}
 
         </div>
       </section>
-
     </div>
   );
 }
