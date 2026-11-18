@@ -87,7 +87,7 @@ function CheckoutPage({ cartItems, clearCart }) {
       }
     };
 
-    let existingOrders = [];
+    let existingOrders;
 
     try {
       existingOrders = JSON.parse(

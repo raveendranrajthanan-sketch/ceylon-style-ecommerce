@@ -1,45 +1,64 @@
 
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router";
-import { products as initialProducts, categories } from "../constants/data";
+
+import {
+  products as initialProducts,
+  categories,
+} from "../constants/data";
+
 import ProductCard from "../components/ProductCard";
 import FilterPanel from "../components/FilterPanel";
-function ShopPage({ onAdd }) {
-  const [searchParams] = useSearchParams();
 
+function ShopPage({ onAdd }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Category is controlled by the URL
+  const category = searchParams.get("category") || "all";
+
+  const setCategory = (value) => {
+    const nextParams = new URLSearchParams(searchParams);
+
+    if (value === "all") {
+      nextParams.delete("category");
+    } else {
+      nextParams.set("category", value);
+    }
+
+    setSearchParams(nextParams);
+  };
+
+  // Load products from LocalStorage
   const [products, setProducts] = useState(() => {
     try {
       const savedProducts = localStorage.getItem("ceylonProducts");
-      return savedProducts ? JSON.parse(savedProducts) : initialProducts;
+
+      return savedProducts
+        ? JSON.parse(savedProducts)
+        : initialProducts;
     } catch {
       return initialProducts;
     }
   });
 
+  // Filter states
   const [search, setSearch] = useState("");
-  const [category, setCategory] = useState(
-    searchParams.get("category") || "all"
-  );
   const [sort, setSort] = useState("default");
-
-  // Additional filters
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [inStockOnly, setInStockOnly] = useState(false);
   const [minRating, setMinRating] = useState("0");
 
-  // Sync category when URL query changes
+  // Listen for product changes from other browser tabs
   useEffect(() => {
-    setCategory(searchParams.get("category") || "all");
-  }, [searchParams]);
+    const handleStorageChange = (event) => {
+      if (event.key !== "ceylonProducts") return;
 
-  // Load updated products from localStorage
-  useEffect(() => {
-    const handleStorageChange = () => {
       try {
-        const savedProducts = localStorage.getItem("ceylonProducts");
         setProducts(
-          savedProducts ? JSON.parse(savedProducts) : initialProducts
+          event.newValue
+            ? JSON.parse(event.newValue)
+            : initialProducts
         );
       } catch {
         setProducts(initialProducts);
@@ -53,7 +72,7 @@ function ShopPage({ onAdd }) {
     };
   }, []);
 
-  // Apply all filters together
+  // Apply all filters and sorting
   const filteredProducts = products
     .filter((product) => {
       const matchesSearch = product.title
@@ -64,10 +83,12 @@ function ShopPage({ onAdd }) {
         category === "all" || product.category === category;
 
       const matchesMinPrice =
-        minPrice === "" || product.price >= Number(minPrice);
+        minPrice === "" ||
+        product.price >= Number(minPrice);
 
       const matchesMaxPrice =
-        maxPrice === "" || product.price <= Number(maxPrice);
+        maxPrice === "" ||
+        product.price <= Number(maxPrice);
 
       const matchesStock =
         !inStockOnly || product.stock > 0;
@@ -85,8 +106,13 @@ function ShopPage({ onAdd }) {
       );
     })
     .sort((a, b) => {
-      if (sort === "low") return a.price - b.price;
-      if (sort === "high") return b.price - a.price;
+      if (sort === "low") {
+        return a.price - b.price;
+      }
+
+      if (sort === "high") {
+        return b.price - a.price;
+      }
 
       if (sort === "name") {
         return a.title.localeCompare(b.title);
@@ -112,6 +138,7 @@ function ShopPage({ onAdd }) {
       {/* Shop Hero */}
       <section className="shop-hero">
         <div className="shop-hero-content">
+
           <span className="shop-eyebrow">
             CEYLON STYLE / COLLECTION
           </span>
@@ -136,6 +163,7 @@ function ShopPage({ onAdd }) {
             <span className="shop-hero-dot">✦</span>
             <span>CEYLON STYLE</span>
           </div>
+
         </div>
 
         <div className="shop-hero-decoration">
@@ -147,55 +175,74 @@ function ShopPage({ onAdd }) {
       {/* Collection Content */}
       <section className="premium-shop-container">
 
+        {/* Section Heading */}
         <div className="shop-section-heading">
+
           <div>
-            <span className="shop-eyebrow">EXPLORE OUR RANGE</span>
+            <span className="shop-eyebrow">
+              EXPLORE OUR RANGE
+            </span>
+
             <h2>Our Collection</h2>
-            <p>Find the pieces that define your style.</p>
+
+            <p>
+              Find the pieces that define your style.
+            </p>
           </div>
 
           <div className="shop-total-badge">
             <span>{filteredProducts.length}</span>
             <small>PRODUCTS</small>
           </div>
+
         </div>
 
         {/* Reusable Filter Panel */}
-          <FilterPanel
-            search={search}
-            setSearch={setSearch}
-            category={category}
-            setCategory={setCategory}
-            categories={categories}
-            minPrice={minPrice}
-            setMinPrice={setMinPrice}
-            maxPrice={maxPrice}
-            setMaxPrice={setMaxPrice}
-            minRating={minRating}
-            setMinRating={setMinRating}
-            sort={sort}
-            setSort={setSort}
-            inStockOnly={inStockOnly}
-            setInStockOnly={setInStockOnly}
-            clearFilters={clearFilters}
-          />
+        <FilterPanel
+          search={search}
+          setSearch={setSearch}
+          category={category}
+          setCategory={setCategory}
+          categories={categories}
+          minPrice={minPrice}
+          setMinPrice={setMinPrice}
+          maxPrice={maxPrice}
+          setMaxPrice={setMaxPrice}
+          minRating={minRating}
+          setMinRating={setMinRating}
+          sort={sort}
+          setSort={setSort}
+          inStockOnly={inStockOnly}
+          setInStockOnly={setInStockOnly}
+          clearFilters={clearFilters}
+        />
 
         {/* Results Information */}
         <div className="shop-results-row">
+
           <div>
-            <span className="shop-results-label">SHOWING</span>
+            <span className="shop-results-label">
+              SHOWING
+            </span>
+
             <strong>{filteredProducts.length}</strong>
-            <span>of {products.length} products</span>
+
+            <span>
+              of {products.length} products
+            </span>
           </div>
 
           <span className="shop-results-line" />
+
           <span className="shop-results-collection">
             CEYLON STYLE COLLECTION
           </span>
+
         </div>
 
         {/* Product Grid */}
         <div className="row g-4 premium-shop-grid">
+
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
               <div
@@ -211,21 +258,27 @@ function ShopPage({ onAdd }) {
           ) : (
             <div className="col-12">
               <div className="shop-no-results">
+
                 <span>⌕</span>
+
                 <h3>No Products Found</h3>
+
                 <p>
                   We couldn't find products matching your filters.
                   Try changing your search or filter options.
                 </p>
+
                 <button
                   type="button"
                   onClick={clearFilters}
                 >
                   Clear All Filters
                 </button>
+
               </div>
             </div>
           )}
+
         </div>
 
         {/* Collection Footer */}

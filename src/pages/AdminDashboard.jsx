@@ -1,17 +1,19 @@
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 
 function AdminDashboard() {
-  const [orders, setOrders] = useState([]);
-  const navigate = useNavigate();
+  const [orders] = useState(() => {
+    try {
+      return JSON.parse(
+        localStorage.getItem("ceylonOrders") || "[]"
+      );
+    } catch {
+      return [];
+    }
+  });
 
-  useEffect(() => {
-    const savedOrders = JSON.parse(
-      localStorage.getItem("ceylonOrders") || "[]"
-    );
-    setOrders(savedOrders);
-  }, []);
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("adminLoggedIn");
